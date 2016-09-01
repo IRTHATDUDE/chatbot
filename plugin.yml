@@ -3,5 +3,6 @@ version: 1.0
 description: it welcomes the player
 author: nayoshi12
 main: com.nayoshi12.turingTest.main
-
-
+commands:
+  chatm:
+    description: debug command

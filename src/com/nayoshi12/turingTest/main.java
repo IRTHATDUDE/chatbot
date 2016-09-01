@@ -4,6 +4,8 @@ import com.nayoshi12.turingTest.events.chatStuff;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
@@ -15,6 +17,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Arrays;
 
 /**
  * Created by Matthew on 8/31/2016.
@@ -43,9 +46,10 @@ public class main extends JavaPlugin implements Listener {
         //pm.registerEvents(new chatStuff(),this);
 
     }
+
     @EventHandler
     public void chatAI(AsyncPlayerChatEvent e) {
-
+       String namerino = format(configConfig.getString("Turing.main.chat")) + format(configConfig.getString("Turing.main.name"));
 
         String message = e.getMessage();
         Player player = e.getPlayer();
@@ -56,7 +60,7 @@ public class main extends JavaPlugin implements Listener {
 
         for (int i = 0; i < checker.length; i++){
 
-            String namerino = format(configConfig.getString("Turing.main.chat")) + format(configConfig.getString("Turing.main.name"));
+
             if (message.contains("hi") && message.contains("how") && message.contains("you")){
                 Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(this, new Runnable() {
                     public void run() {
@@ -107,6 +111,17 @@ public class main extends JavaPlugin implements Listener {
 
 
 
+    }
+
+    @Override
+    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+        String namerino = format(configConfig.getString("Turing.main.chat")) + format(configConfig.getString("Turing.main.name"));
+        if(command.getName().equalsIgnoreCase("chatm")){
+            String derp = Arrays.toString(args).replace("[","").replace("]","").replace(",","");
+
+            Bukkit.broadcastMessage(namerino + " " + derp );
+        }
+        return true;
     }
 
     public static String format(String string) {
