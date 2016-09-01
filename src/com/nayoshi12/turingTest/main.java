@@ -55,11 +55,12 @@ public class main extends JavaPlugin implements Listener {
         String[] responses = {"hello","hi", "eww", "nm, hbu?"};
 
         for (int i = 0; i < checker.length; i++){
-            String namerino = format(getConfig().get("chat").toString()) + format(getConfig().get("name").toString());
+
+            String namerino = format(configConfig.getString("Turing.main.chat")) + format(configConfig.getString("Turing.main.name"));
             if (message.contains("hi") && message.contains("how") && message.contains("you")){
                 Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(this, new Runnable() {
                     public void run() {
-                        getServer().broadcastMessage("<jean1243> I'm doing good, hbu?");
+                        getServer().broadcastMessage(namerino + " I'm doing good, hbu?");
 
                     }
                 }, 20);
@@ -68,7 +69,7 @@ public class main extends JavaPlugin implements Listener {
             if (message.contains("how") && message.contains("you")){
                 Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(this, new Runnable() {
                     public void run() {
-                        getServer().broadcastMessage("<jean1243> I'm fine, how are you?");
+                        getServer().broadcastMessage(namerino + " I'm fine, how are you?");
 
                     }
                 }, 20);
@@ -77,7 +78,7 @@ public class main extends JavaPlugin implements Listener {
             if (message.contains("what") && message.contains("up")){
                 Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(this, new Runnable() {
                     public void run() {
-                        getServer().broadcastMessage(" not much how about you?");
+                        getServer().broadcastMessage(namerino +" not much how about you?");
 
                     }
                 }, 20);
@@ -95,7 +96,7 @@ public class main extends JavaPlugin implements Listener {
             if (message.equals(checker[i])) {
                 Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(this, new Runnable() {
                     public void run() {
-                        getServer().broadcastMessage("<jean1243> " + responses[asd]);
+                        getServer().broadcastMessage( namerino + " "  + responses[asd]);
 
                     }
             }, 20);
