@@ -27,38 +27,7 @@ public class main extends JavaPlugin implements Listener {
     @Override
     public void onEnable() {
         getLogger().info("hey");
-        configFolder = getDataFolder();
-        configFile = new File(configFolder, "config.yml");
-
-        configConfig = new YamlConfiguration();
-
-        if (configFolder.exists() == false) {
-            try {
-                configFolder.mkdir();
-
-            }
-            catch (Exception ex){
-
-            }
-        }
-
-        if(configFile.exists() == false){
-
-            try{
-                configFile.createNewFile();
-            }
-            catch(IOException ex){
-
-            }
-        }
-
-            try{
-                configConfig.load(configFile);
-            }
-            catch(Exception ex){
-
-            }
-
+        registerConfigs();
         registerEvents();
     }
 
@@ -76,9 +45,7 @@ public class main extends JavaPlugin implements Listener {
     }
     @EventHandler
     public void chatAI(AsyncPlayerChatEvent e) {
-        //EDIT THESE SHIT
-        if (configConfig.get("potato.name:",))
-        configConfig.set("potato.name:",);
+
 
         String message = e.getMessage();
         Player player = e.getPlayer();
@@ -147,5 +114,43 @@ public class main extends JavaPlugin implements Listener {
             s = s.replaceAll("(?i)<" + color.name() + ">", "" + color);
         }
         return s;
+    }
+    public void registerConfigs(){
+        configFolder = getDataFolder();
+        configFile = new File(configFolder, "config.yml");
+
+        configConfig = new YamlConfiguration();
+
+        if (configFolder.exists() == false) {
+            try {
+                configFolder.mkdir();
+
+            }
+            catch (Exception ex){
+
+            }
+        }
+
+        if(configFile.exists() == false){
+
+            try{
+                configFile.createNewFile();
+                configConfig.set("Turing.main.chat","<dark_gray>[<dark_aqua>C-Mod<dark_gray>]<dark_aqua>");
+                configConfig.set("Turing.main.name","MarshallMathers <reset><light_purple><magic>asd<reset> <dark_aqua>");
+                configConfig.save(configFile);
+            }
+            catch(IOException ex){
+
+            }
+        }
+
+        try{
+            configConfig.load(configFile);
+        }
+        catch(Exception ex){
+
+        }
+
+
     }
 }
